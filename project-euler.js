@@ -76,3 +76,26 @@ const largestPrimeFactor = (num) => {
 
 // console.log(largestPrimeFactor((600851475143)))
 // ANSWER: 6857
+
+/*
+  4. A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+  Find the largest palindrome made from the product of two 3-digit numbers.
+*/
+
+const largestPalindromeNumber = () => {
+  let high = 0
+  for(let i = 999; i > 800; i--) {
+    for(let j = 999; j > 800; j--) {
+      let temp = (i*j).toLocaleString().split('')
+      if(temp[0] === temp[6] && temp[1] === temp[5] && temp[2] === temp[4]) {
+        if((i * j) > high) {
+          high = i * j
+        }
+      }
+    }
+  }
+  return high
+}
+
+// console.log(largestPalindromeNumber())
+// ANSWER: 906,609 from [993, 913]
