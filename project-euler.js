@@ -30,3 +30,49 @@ const evenFibNums = () => {
 }
 // console.log(evenFibNums())
 // ANSWER: 4613732
+
+
+/*
+  3.The prime factors of 13195 are 5, 7, 13 and 29.
+  What is the largest prime factor of the number 600851475143 ?
+*/
+
+const largestPrimeFactor = (num) => {
+  let primes = findPrimes(12345)
+  let primeFactors = []
+
+  let i = 0
+  let temp = num
+
+  while(
+    primeFactors.reduce(
+      (prev, curr) => prev * curr, 1
+    ) !== num) {
+    if(temp % primes[i] === 0) {
+      temp /= primes[i]
+      primeFactors.push(primes[i])
+    } else {
+      i++
+    } 
+  }
+
+
+  function findPrimes(n) {
+    let primes = [2]
+    for(let i = 3; i <= n; i++){
+      if(((i / 2) % 2 !== 0)) {
+        let check = true
+        primes.forEach(prime => {
+          if(i % prime === 0) check = false 
+        })
+        if(check) primes.push(i)
+      }
+    }
+    return primes
+  }
+
+  return Math.max(...primeFactors)
+}
+
+// console.log(largestPrimeFactor((600851475143)))
+// ANSWER: 6857
