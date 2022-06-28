@@ -97,3 +97,24 @@ const largestPalindromeNumber = () => {
 }
 // console.log(largestPalindromeNumber())
 // ANSWER: 906,609 from [993, 913]
+
+
+/*
+  5.2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+  What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+*/
+
+const smallestMultiple = () => {
+  let done = false
+  let i = 2520
+  while(!done) {
+    i++
+    for(let j = 1; j <= 20; j++) {
+      if(i % j !== 0) break 
+      else if(j === 20) done = true
+    }
+  }
+  return i
+}
+// console.log(smallestMultiple())
+// ANSWER: 232792560
