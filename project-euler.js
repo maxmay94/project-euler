@@ -202,3 +202,31 @@ const productOf13 = () => {
 }
 // console.log(productOf13())
 // ANSWER: 23514624000
+
+
+/*
+  9. A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+        a^2 + b^2 = c^2
+    For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
+
+    There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+    Find the product abc.
+*/
+const pythagoreanTriplet = () => {
+  let a, b, c
+  for(let n = 0; n < 500; n++) {
+    for(let m = 0; m < 500; m++) {
+      a = m**2 - n**2
+      b = (m*n)*2
+      c = m**2 + n**2
+      if(a**2 + b**2 === c**2) {
+        if(a + b + c === 1000) {
+          console.log(a,b,c, a+b+c)
+          return a * b * c
+        }
+      }
+    }
+  }
+}
+// console.log(pythagoreanTriplet())
+// ANSWER: 31875000
