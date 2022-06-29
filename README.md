@@ -1,2 +1,8 @@
 # project-euler
-Practice problems from ProjectEuler.net
+
+## SPOILER WARNING 
+### Answers in project-euler.js file
+
+
+
+Practice problems from <a href="ProjectEuler.net" >Project Euler</a>
