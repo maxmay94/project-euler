@@ -145,16 +145,6 @@ const sumSquareDifference = () => {
   What is the 10 001st prime number?
 */
 const lateStagePrime = () => {
-
-  function isPrime(n) {
-    if(n === 1) return false
-    let sqrtN = Math.floor(Math.sqrt(n))
-    for(let i = 2; i <= sqrtN; i++){
-      if(n % i === 0) return false
-    }
-    return true
-  }
-
   let primes = []
   for(let i = 0; primes.length <= 10001; i++) {
     if(isPrime(i)) primes.push(i)
@@ -204,6 +194,7 @@ const productOf13 = () => {
 // ANSWER: 23514624000
 
 
+
 /*
   9. A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
         a^2 + b^2 = c^2
@@ -221,7 +212,6 @@ const pythagoreanTriplet = () => {
       c = m**2 + n**2
       if(a**2 + b**2 === c**2) {
         if(a + b + c === 1000) {
-          console.log(a,b,c, a+b+c)
           return a * b * c
         }
       }
@@ -230,3 +220,31 @@ const pythagoreanTriplet = () => {
 }
 // console.log(pythagoreanTriplet())
 // ANSWER: 31875000
+
+
+
+/*
+  10. The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+  Find the sum of all the primes below two million.
+*/
+const summationOfPrimes = () => {
+  let sum = 0
+  for(let i = 0; i < 2000000; i++) {
+    if(isPrime(i)) sum += i
+  }
+  return sum
+}
+// console.log(summationOfPrimes())
+// ANSWER: 142913828922
+
+
+
+/* ------------------------------------------ HELPER FUNCTIONS ------------------------------------------ */
+function isPrime(n) {
+  if(n === 1) return false
+  let sqrtN = Math.floor(Math.sqrt(n))
+  for(let i = 2; i <= sqrtN; i++){
+    if(n % i === 0) return false
+  }
+  return true
+}
