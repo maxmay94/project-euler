@@ -327,7 +327,7 @@ const divisibleTriangleNumber = () => {
 
   return triangleNums
 }
-console.log(divisibleTriangleNumber())
+// console.log(divisibleTriangleNumber())
 // ANSWER: 76576500
 
 // -----> COME BACK TO PROBLEM 11 FOR BETTER SOLUTION ---> num = a^m x b^n ///(a & b must be prime factors)///--->  No. of divisors = (m+1)(n+2)
@@ -540,28 +540,14 @@ const largeSum = () => {
     '20849603980134001723930671666823555245252804609722',
     '53503534226472524250874054075591789781264330331690'
   ]
-  let sum = nums[0]
-  let carry = 0
-  for(let i = 1; i <= 100; i++) {
-    let diff = nums[i] - sum.length
-    for(let j = sum.length - 1; j >=0; j--) {
-      var temp = 
-        (Number(sum.charAt(j)) % 10) +
-        (Number(nums[i].charAt(j + diff)) % 10) + 
-        carry
-      if(temp >= 10) {
-        sum = (temp % 10) + sum
-        carry = Math.floor(temp / 10)
-      } else {
-        sum = temp + sum
-        carry = 0
-      }
-    }
-  }
-  if(carry) sum = carry + sum
-  return sum
+  let sum = 0
+  nums.forEach(num => {
+    sum += Number(BigInt(num))
+  })
+  return sum.toString().replace('.', '').substring(0,10)
 }
-console.log(largeSum())
+// console.log(largeSum())
+// ANSWER: 5537376230
 
 
 
