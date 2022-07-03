@@ -620,6 +620,75 @@ const powerDigitSum = () => {
 // ANSWER: 1366
 
 
+/*
+  17. If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+
+  If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+
+  NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
+*/
+const numberLetterCounts = () => {
+  const values = {
+    0: 0,
+    1: 3,
+    2: 3,
+    3: 5,
+    4: 4,
+    5: 4,
+    6: 3,
+    7: 5,
+    8: 5,
+    9: 4,
+    10: 3,
+    11: 6,
+    12: 6,
+    13: 8,
+    14: 8,
+    15: 7,
+    16: 7,
+    17: 9,
+    18: 8,
+    19: 8,
+    20: 6,
+    30: 6,
+    40: 5,
+    50: 5,
+    60: 5,
+    70: 7,
+    80: 6,
+    90: 6,
+    1000: 11
+  }
+
+  let sum = 0
+  for(let i = 1; i <= 1000; i++) {
+    let str = i.toString()
+    if(str.length === 4) sum += values[1000]
+    else if(str.length === 3) {
+      sum += values[Number(str.substring(0, 1))] // first digit of three digit number
+      if(Number(str.substring(1,3)) >= 1) sum += 10 // 'hundred' + 'and' = 7
+      else sum += 7 // even hundred, no 'and'
+      if(Number(str.substring(1,3)) >= 10 && 19 >= Number(str.substring(1,3))) {
+        sum += values[Number(str.substring(1,3))]
+      } else {
+        sum += values[Number(str.substring(1,2)) * 10] + values[Number(str.substring(2,3))]
+      }
+    } else if(str.length === 2) {
+      if(Number(str.substring(0,2)) <= 19) {
+        sum += values[Number(str.substring(0,2))]
+      } else {
+        sum += values[Number(str.substring(0,1)) * 10] + values[Number(str.substring(1,2))]
+      }
+    } else{
+      sum += values[Number(str.substring(0,1))]
+    } 
+  }
+  return sum
+}
+// console.log(numberLetterCounts())
+// ANSWER: 21124
+
+
 
 /* ------------------------------------------ HELPER FUNCTIONS ------------------------------------------ */
 function isPrime(n) {
