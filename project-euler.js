@@ -601,6 +601,26 @@ const latticePaths = () => {
 // console.log(latticePaths())
 // ANSWER: 137846528820
 
+
+
+/*
+  16. 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+
+  What is the sum of the digits of the number 2^1000?
+*/
+const powerDigitSum = () => {
+  let pow = BigInt(2**1000)
+  let sum = 0
+  pow.toString().split('').forEach(num => {
+    sum += Number(num)
+  })
+  return sum
+}
+// console.log(powerDigitSum())
+// ANSWER: 1366
+
+
+
 /* ------------------------------------------ HELPER FUNCTIONS ------------------------------------------ */
 function isPrime(n) {
   if(n === 1) return false
