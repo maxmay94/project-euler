@@ -740,12 +740,7 @@ const maximumPathSum_1 = () => {
   ]
   let sum = 0
 
-  triangle.forEach((line, i) => {
-    while(triangle[i].length < triangle.length) triangle[i].push(0)
-  })
-
   for(let i = 14 ; i >= 1; i--) {
-
     if(i === 1) {
       if(((triangle[i - 1][i]) + (triangle[i][i])) > ((triangle[i - 1][i]) + (triangle[i][i + 1]))) {
         triangle[i - 1][i] = (triangle[i - 1][i]) + (triangle[i][i])
@@ -754,13 +749,12 @@ const maximumPathSum_1 = () => {
       }
     }
 
-    for(let j = 0; j <= 14; j++) {
+    for(let j = 0; j <= triangle[i].length; j++) {
       if(((triangle[i - 1][j]) + (triangle[i][j])) > ((triangle[i - 1][j]) + (triangle[i][j + 1]))) {
         triangle[i - 1][j] = (triangle[i - 1][j]) + (triangle[i][j])
       } else {
         (triangle[i - 1][j]) = (triangle[i - 1][j]) + (triangle[i][j + 1])
       }
-      console.log(triangle)
     }
   }
 
@@ -768,6 +762,57 @@ const maximumPathSum_1 = () => {
 }
 // console.log(maximumPathSum_1())
 // ANSWER: 1074
+
+
+/*
+  19. You are given the following information, but you may prefer to do some research for yourself.
+
+  - 1 Jan 1900 was a Monday.
+
+  - Thirty days has September,
+    April, June and November.
+    All the rest have thirty-one,
+    Saving February alone,
+    Which has twenty-eight, rain or shine.
+    And on leap years, twenty-nine.
+
+  - A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+
+  How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+*/
+const countingSundays = () => {
+  let days = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday'
+  ]
+  let numDays = 0
+  let count = 0
+
+  for(let i = 1901; i <= 2000; i++) {
+
+    for(let j = 0; j < 12; j++) {
+      if(j === 1) {
+        if(i === 2000 || i % 4 === 0) numDays += 29
+        else numDays += 28
+        if(days[numDays % 7] === 'sunday') count++
+      } else if(i % 2 === 0 || i === 7) {
+        numDays += 31
+        if(days[numDays % 7] === 'sunday') count++
+      } else {
+        numDays += 30
+        if(days[numDays % 7] === 'sunday') count++
+      }
+    }
+  }
+  return count
+}
+// console.log(countingSundays())
+// ANSWER: 171
 
 
 
