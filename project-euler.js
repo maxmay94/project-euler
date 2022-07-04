@@ -794,7 +794,6 @@ const countingSundays = () => {
   let count = 0
 
   for(let i = 1901; i <= 2000; i++) {
-
     for(let j = 0; j < 12; j++) {
       if(j === 1) {
         if(i === 2000 || i % 4 === 0) numDays += 29
@@ -816,6 +815,23 @@ const countingSundays = () => {
 
 
 
+/*
+  20. n! means n × (n − 1) × ... × 3 × 2 × 1
+
+  For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
+  and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
+
+  Find the sum of the digits in the number 100!
+*/
+const factorialDigitSum = () => {
+  return BigInt(factorialize(100)).toString().split('').reduce((a,b) => Number(a) + Number(b), 0)
+}
+console.log(factorialDigitSum())
+// ANSWER: 648
+
+
+
+
 /* ------------------------------------------ HELPER FUNCTIONS ------------------------------------------ */
 function isPrime(n) {
   if(n === 1) return false
@@ -828,6 +844,6 @@ function isPrime(n) {
 
 function factorialize(n) {
   if(n < 0) return -1
-  else if(n ===0) return 1
-  else return (n * factorialize(n - 1))
+  else if(n === 0) return 1
+  else return (BigInt(n) * BigInt(factorialize(n - 1)))
 }
