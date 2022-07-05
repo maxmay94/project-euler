@@ -763,6 +763,7 @@ const maximumPathSum_1 = () => {
 // ANSWER: 1074
 
 
+
 /*
   19. You are given the following information, but you may prefer to do some research for yourself.
 
@@ -829,6 +830,7 @@ const factorialDigitSum = () => {
 // ANSWER: 648
 
 
+
 /*
   21. Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
   If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
@@ -848,17 +850,39 @@ const amicableNumbers = () => {
     for(let k = 1; k < sum1; k++) {
       if(sum1 % k === 0) sum2 += k 
     }
-    if(!amicables.includes(sum1) && !amicables.includes(sum2)) {
-      if(sum1 !== sum2 && i < sum1 && sum2 === i) {
-        amicables.push(sum1)
-        amicables.push(sum2)
-      }
+    if(sum1 !== sum2 && i < sum1 && sum2 === i) {
+      amicables.push(sum1)
+      amicables.push(sum2)
     }
   }
   return amicables.reduce((a,b) => a + b, 0) 
 }
 // console.log(amicableNumbers())
 // ANSWER: 31626
+
+
+/*
+  22. Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
+
+  For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714.
+
+  What is the total of all the name scores in the file?
+*/
+const nameScores = () => {
+  let fs = require('fs')
+  let names = fs.readFileSync('names.txt', 'utf-8').replaceAll('"', '').split(',').sort()
+  let scores = 0
+  names.forEach((nme ,i) => {
+    let nameSum = 0
+    nme.split('').forEach((char, j) => {
+      nameSum += nme.charCodeAt(j) - 64
+    })
+    scores += (nameSum * (i + 1))
+  })
+  return scores
+}
+// console.log(nameScores())
+// ANSWER: 871198282
 
 
 /* ------------------------------------------ HELPER FUNCTIONS ------------------------------------------ */
